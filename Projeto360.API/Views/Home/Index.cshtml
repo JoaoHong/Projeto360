@@ -1,0 +1,57 @@
+﻿@model List<Projeto360.DAO.Models.Produto>;
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Projeto360";
+}
+<style>
+    #dataTable{
+        background-color: white;
+        align-content: center;
+    }
+
+    #divTable{
+        align-items:center;
+    }
+</style>
+<div class="text-center">
+    <h1 class="display-4">Listagem de Produtos</h1>
+</div>
+<div class="card-body">
+    <div class="" style="flex:auto; ">
+        <a href="@Url.Action("Adicionar", "Home")" class="btn">Adicionar</a>
+    </div>
+    <div class="" id="divTable">
+        <table id="dataTable" class="cell-border">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Data de Criação</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var produto in Model)
+                {
+                    <tr>
+                        <td>@produto.Id</td>
+                        <td>@produto.Nome</td>
+                        <td>@produto.Descricao</td>
+                        <td>@produto.Preco</td>
+                        <td>@produto.DataCriacao.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="~/js/Home/Home.js" asp-append-version="true"></script>
+<script type="text/javascript">
+    $(function () {
+        HomeAPI.initIndex();
+    });
+</script>

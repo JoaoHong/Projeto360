@@ -1,4 +1,14 @@
-namespace Projeto360.API
+using Microsoft.EntityFrameworkCore;
+using Projeto360.DAO.Models;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
+using Projeto360.DAO.Interface.IService;
+using VascoVasconcellos.DAO.Service;
+using Projeto360.DAO.Inteface.IRepository;
+using Projeto360.DAO.Interface.IRepository;
+using Projeto360.DAO.Repository;
+
+namespace WebApplication1
 {
 	public class Program
 	{
@@ -6,15 +16,41 @@ namespace Projeto360.API
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
+			#region Services
+			builder.Services.AddScoped<IServiceProduto, ServiceProduto>();
+			#endregion
+
+			#region Repositories
+			builder.Services.AddScoped<IRepositoryProduto, RepositoryProduto>();
+			#endregion
+
+			var configuration = new ConfigurationBuilder()
+				.SetBasePath(builder.Environment.ContentRootPath)
+				.AddJsonFile("appsettings.json")
+				.Build();
+
+			var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+
+			builder.Services.AddDbContext<TesteDevContext>(options =>
+	options.UseSqlServer(connectionString));
+
+
 			// Add services to the container.
-			builder.Services.AddRazorPages();
+			builder.Services.AddControllersWithViews();
+
+			builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+			// Crie uma instância da configuração a partir do appsettings.json
+			
+
 
 			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())
 			{
-				app.UseExceptionHandler("/Error");
+				app.UseExceptionHandler("/Home/Error");
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
@@ -26,7 +62,9 @@ namespace Projeto360.API
 
 			app.UseAuthorization();
 
-			app.MapRazorPages();
+			app.MapControllerRoute(
+				name: "default",
+				pattern: "{controller=Home}/{action=Index}/{id?}");
 
 			app.Run();
 		}
