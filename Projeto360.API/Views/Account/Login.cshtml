@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Entrar";
+}
+
+<style>
+    #divLogin {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #formLogin{
+        background-color: #e9e5e9;
+    }
+</style>
+
+<div class="rounded shadow-sm" id="divLogin">
+    <form class="form-check col-md-4" novalidate="novalidate" id="formLogin">
+        <div class="text-center mb-10">
+            <h1 class="text-dark mb-3">Entrar</h1>
+        </div>
+
+        <div class="">
+            <div class="fv-row mb-10 text-center row col-md-12">
+                <label class="form-label fs-6 fw-bolder text-dark">Nome de Usuário</label>
+                <input class="form-control form-control-lg form-control-solid" type="text" name="nome" id="nome" />
+            </div>
+
+            <div class="fv-row mb-10 text-center row col-md-12">
+                <label class="form-label fs-6 fw-bolder text-dark">Senha</label>
+                <input id="password" class="form-control form-control-lg form-control-solid" type="password" placeholder="Senha" name="password" autocomplete="off" />
+            </div>
+        </div>
+
+
+
+
+        <div class="text-center mb-5 " style="margin-top: 10px;">
+            <a href="/Account/CriarLogin" >Criar Login</a>
+            <button type="button" id="confirmarLogin" class="btn btn-lg btn-primary">Confirmar</button>
+        </div>
+    </form>
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/Account/Account.js" asp-append-version="true"></script>
+<script type="text/javascript">
+    $(function () {
+        AccountAPI.initLogIn();
+    });
+</script>

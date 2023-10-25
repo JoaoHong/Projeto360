@@ -1,9 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Adicionar";
+﻿@model Projeto360.DAO.Models.Produto;
+@{
+    ViewData["Title"] = "Visualizar";
 }
 
 <div class="text-center">
-    <h1 class="display-6">Adicionar Produto</h1>
+    <h1 class="display-4">Visualizar Produto</h1>
 </div>
 
 <div class="container">
@@ -15,23 +16,27 @@
                         <div class="form-group row">
                             <div class="col-md-8">
                                 <label for="nomeProduto" class="col-md-4 col-form-label">Nome do Produto</label>
-                                <input type="text" name="nomeProduto" id="nomeProduto" class="form-control" />
+                                <input type="text" name="nomeProduto" id="nomeProduto" class="form-control" readonly value="@Model.Nome" />
                             </div>
                             <div class="col-md-4">
                                 <label for="valorProduto" class="col-md-4 col-form-label">Valor</label>
-                                <input type="text" name="valorProduto" id="valorProduto" class="form-control" />
+                                <input type="text" name="valorProduto" id="valorProduto" class="form-control" readonly value="R$ @Model.Preco" />
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="valorProduto" class="col-md-12 col-form-label">Data de Criação</label>
+                                <input type="text" name="valorProduto" id="valorProduto" class="form-control" readonly value="@Model.DataCriacao.ToString("dd/MM/yyyy")" />
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-12 ">
                                 <label for="descricaoProduto">Descrição:</label>
-                                <textarea class="form-control" name="descricaoProduto" id="descricaoProduto" rows="4" maxlength="230"></textarea>
-                            </div>                           
+                                <textarea class="form-control" name="descricaoProduto" id="descricaoProduto" rows="4" maxlength="230" readonly>@Model.Descricao</textarea>
+                            </div>
                         </div>
                         <div class="form-group text-center  ">
                             <button type="button" id="btnVoltar" onclick="voltar()" class="btn btn-secondary">Voltar</button>
-                            <button type="button" id="btnAdicionar" class="btn btn-primary">Adicionar</button>
                         </div>
                     </form>
                 </div>
@@ -43,10 +48,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/Home/Home.js" asp-append-version="true"></script>
 <script type="text/javascript">
-    $(function () {
-        HomeAPI.initAdcionar();      
-    });
     function voltar() {
         window.history.back();
-    }; 
+    };
 </script>

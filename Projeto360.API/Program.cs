@@ -7,6 +7,8 @@ using VascoVasconcellos.DAO.Service;
 using Projeto360.DAO.Inteface.IRepository;
 using Projeto360.DAO.Interface.IRepository;
 using Projeto360.DAO.Repository;
+using Microsoft.AspNetCore.Identity;
+using Projeto360.DAO.IService;
 
 namespace WebApplication1
 {
@@ -18,10 +20,12 @@ namespace WebApplication1
 
 			#region Services
 			builder.Services.AddScoped<IServiceProduto, ServiceProduto>();
+			builder.Services.AddScoped<IServiceUsuario, ServiceUsuario>();
 			#endregion
 
 			#region Repositories
 			builder.Services.AddScoped<IRepositoryProduto, RepositoryProduto>();
+			builder.Services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();
 			#endregion
 
 			var configuration = new ConfigurationBuilder()
@@ -64,7 +68,7 @@ namespace WebApplication1
 
 			app.MapControllerRoute(
 				name: "default",
-				pattern: "{controller=Home}/{action=Index}/{id?}");
+				pattern: "{controller=Home}/{action=Login}/{id?}");
 
 			app.Run();
 		}

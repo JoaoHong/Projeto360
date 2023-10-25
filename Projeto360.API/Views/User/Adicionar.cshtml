@@ -1,0 +1,143 @@
+﻿@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Adicionar Usuario";
+}
+
+<!--begin::Toolbar-->
+<div class="toolbar py-5 py-lg-5" id="kt_toolbar">
+	<!--begin::Container-->
+	<div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+		<!--begin::Page title-->
+		<div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+			<!--begin::Title-->
+			<h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Gerenciamento</h1>
+			<!--end::Title-->
+			<!--begin::Separator-->
+			<span class="h-20px border-gray-200 border-start mx-4"></span>
+			<!--end::Separator-->
+			<!--begin::Breadcrumb-->
+			<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+				<!--begin::Item-->
+				<li class="breadcrumb-item text-muted">
+					<a href="@Url.Action("Index", "Usuario", new { Area = "Gerenciamento" })" class="text-muted text-hover-primary">Usuários</a>
+				</li>
+				<!--end::Item-->
+				<!--begin::Item-->
+				<li class="breadcrumb-item">
+					<span class="bullet bg-gray-300 w-5px h-2px"></span>
+				</li>
+				<!--end::Item-->
+				<!--begin::Item-->
+				<li class="breadcrumb-item text-muted">
+					<a href="@Url.Action("Adicionar", "Usuario", new { Area = "Gerenciamento" })" class="text-muted text-hover-primary">Adicionar</a>
+				</li>
+				<!--end::Item-->
+			</ul>
+			<!--end::Breadcrumb-->
+		</div>
+		<!--end::Page title-->
+		<!--begin::Actions-->
+		<!--end::Actions-->
+	</div>
+	<!--end::Container-->
+</div>
+<!--end::Toolbar-->
+
+<!--begin::Post-->
+<div class="post d-flex flex-column-fluid" id="kt_post">
+	<!--begin::Container-->
+	<div id="kt_content_container" class="container-fluid">
+
+		<div class="card card-bordered">
+			<!--begin::Card header-->
+			<div class="card-header align-items-center py-3 gap-2 gap-md-5">
+				<!--begin::Card title-->
+				<div class="card-title">
+					<h3>Adicionar Usuários</h3>
+				</div>
+				<!--end::Card title-->
+				<!--begin::Card toolbar-->
+				<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+					<!--begin::Actions-->
+					<!--end::Actions-->
+				</div>
+				<!--end::Card toolbar-->
+			</div>
+			<!--end::Card header-->
+			<!--begin::Card body-->
+			<div class="card-body">
+
+				<form class="form w-100" novalidate="novalidate" id="formUsuario">
+
+					<div class="row mb-10">
+
+						<div class="col-md-4">
+							<!--begin::Input-->
+							<div class="fv-row">
+								<label class="required form-label">Nome do usuário</label>
+								<input type="text" name="NomeUsuario" class="form-control mb-2" placeholder="Nome de usuário" value="" maxlength="150" />
+								<div class="text-muted fs-7">Nome do usuário</div>
+							</div>
+							<!--end::Input-->
+						</div>
+
+						<div class="col-md-4">
+
+						</div>
+						<div class="col-md-4">
+							<!--begin::Input-->
+							<div class="fv-row">
+								<label class="required form-label">Local</label>
+								<input type="text" name="Local" class="form-control mb-2" placeholder="Local" value="" id="Local" />
+								<span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" id="btnVisibility">
+									<i class="bi bi-eye-slash fs-2 icnTS"></i>
+									<i class="bi bi-eye fs-2 d-none icnTS1"></i>
+								</span>
+								<div class="text-muted fs-7">Local do usuario</div>
+							</div>
+							<!--end::Input-->
+						</div>
+						<div class="col-md-4">
+							<!--begin::Input-->
+							<div class="fv-row">
+								<label class="required form-label">Senha</label>
+								<input type="password" name="password" class="form-control mb-2" placeholder="Senha" value="" maxlength="150" />
+								<span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" id="btnVisibility">
+									<i class="bi bi-eye-slash fs-2 icnTS"></i>
+									<i class="bi bi-eye fs-2 d-none icnTS1"></i>
+								</span>
+								<div class="text-muted fs-7">Senha de acesso</div>
+							</div>
+							<!--end::Input-->
+						</div>
+
+					</div>
+
+
+				</form>
+
+			</div>
+			<!--end::Card body-->
+			<!--begin::Card footer-->
+			<div class="card-footer py-5">
+				<div class="d-flex justify-content-between">
+					<a href="@Url.Action("Index", "Usuario", new { Area = "Gerenciamento" })" class="btn btn-secondary">Voltar</a>
+					<div class="d-flex">
+						<a id="btnAdicionar" class="btn btn-primary">Adicionar</a>
+					</div>
+				</div>
+			</div>
+			<!--end::Card footer-->
+		</div>
+
+	</div>
+	<!--end::Container-->
+</div>
+<!--end::Post-->
+
+<script src="~/js/Areas/Gerenciamento/Usuario/Usuario.js" asp-append-version="true"></script>
+<script type="text/javascript">
+	$(function () {
+		UsuarioAPI.initAdicionar();
+	});
+</script>

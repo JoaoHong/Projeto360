@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Projeto360.DAO\Projeto360.DAO.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\VM\" />
-  </ItemGroup>
-
 </Project>
